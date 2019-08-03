@@ -1,0 +1,15 @@
+<% include partials/header %>
+
+<h1>This is a trips PAGE</h1>
+
+<% trips.forEach(function(trips){ %>
+<div>
+	   <li>
+	      <h4> <%= trips.name %> </h4>
+	      <img src="<%= trips.image %>">
+	   </li>
+</div>
+	
+<% }); %>
+
+<% include partials/footer %>

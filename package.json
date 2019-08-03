@@ -1,0 +1,23 @@
+{
+  "name": "two-wheels-trips",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PavelKhromov/two-wheels-trips.git"
+  },
+  "author": "Pavel Khromov",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/PavelKhromov/two-wheels-trips/issues"
+  },
+  "homepage": "https://github.com/PavelKhromov/two-wheels-trips#readme",
+  "dependencies": {
+    "ejs": "^2.6.2",
+    "express": "^4.17.1"
+  }
+}
