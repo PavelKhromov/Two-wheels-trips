@@ -1,15 +1,41 @@
+<!DOCTYPE html>
+
 <% include partials/header %>
 
-<h1>This is a trips PAGE</h1>
+ 
 
-<% trips.forEach(function(trips){ %>
-<div>
-	   <li>
-	      <h4> <%= trips.name %> </h4>
-	      <img src="<%= trips.image %>">
-	   </li>
-</div>
-	
-<% }); %>
+<div class="container">
+	<header class="jumbotron">
+
+
+	   <h1>Make Life A Ride</h1>
+	   <p>View our hand-picked trips from USA</p>
+	   <p>
+	  	<a class="btn btn-primary btn-lg" href="/trips/new"> Add a new trip</a>
+	   </p>
+	  
+    </header>
+
+   <div class="row text-center" style="display:flex; flex-wrap: wrap;">
+   	<% trips.forEach(function(trips){ %>
+   	 	<div class="col-md-3 col-sm-6">
+   	 		<div class="thumbnail">
+   	 			
+		      
+		      <img src= "<%= trips.image %>">
+		      <div class="caption">
+		      	<h4><%= trips.name %></h4>
+		      </div>
+		   
+   	 		</div>
+   	 	</div>
+   	 <% }); %>
+   </div>
+   
+
 
 <% include partials/footer %>
+
+
+
+   	 		

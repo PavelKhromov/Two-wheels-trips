@@ -9,3 +9,29 @@
 </body>
 </html>
 
+
+
+
+<h3>Our most popular trips!</h3>
+   	 	</div>
+   </div>
+
+
+
+
+
+	
+
+	<% trips.forEach(function(trips){ %>
+	<div>
+		   <li>
+		      <h4> <%= trips.name %> </h4>
+		      <img src="<%= trips.image %>">
+		   </li>
+	</div>
+		
+	<% }); %>
+</div>
+
+<% include partials/footer %>
+
