@@ -2,10 +2,38 @@
 	width: 100%;
 }
 
+.image img {
+	width: 100%;
+	
+}
+
+
 .thumbnail {
 	padding: 0;
 }
 
 .thumbnail .caption-full {
 	padding: 9px;
+
 }
+
+#delete-form {
+	display: inline;
+}
+
+
+
+.about p{
+	font-size: 1.8rem;
+	font-weight: 400;
+
+}
+
+hr { 
+  
+    border: 7px solid #FFFF0A;
+}
+
+
+
+

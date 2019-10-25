@@ -18,12 +18,16 @@ router.get("/register", function(req, res){
 //handle sign up logic
 router.post("/register", function(req, res){
     var newUser = new User({username: req.body.username});
+    if(req.body.adminCode === 'mysecretcode2020') {
+      newUser.isAdmin = true;
+    }
     User.register(newUser, req.body.password, function(err, user){
         if(err){
             console.log(err);
-            return res.render("register");
+            return res.render("register", {"error": err.message});
         }
         passport.authenticate("local")(req, res, function(){
+           req.flash("success", "Welcome to the Two Wheels Trips " + user.username);
            res.redirect("/trips"); 
         });
     });
@@ -44,9 +48,11 @@ router.post("/login", passport.authenticate("local",
 // logic route
 router.get("/logout", function(req, res){
    req.logout();
+   req.flash("success", "Logged you out!");
    res.redirect("/trips");
 });
 
+//midleware
 function isLoggedIn(req, res, next){
     if(req.isAuthenticated()){
         return next();

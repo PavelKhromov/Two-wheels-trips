@@ -4,7 +4,8 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon app.js"
   },
   "repository": {
     "type": "git",
@@ -17,13 +18,23 @@
   },
   "homepage": "https://github.com/PavelKhromov/two-wheels-trips#readme",
   "dependencies": {
-    "body-parser": "^1.14.1",
-    "ejs": "^2.3.4",
-    "express": "^4.13.3",
-    "express-session": "^1.11.3",
-    "mongoose": "^4.1.12",
-    "passport": "^0.3.0",
+    "body-parser": "^1.18.3",
+    "connect-flash": "^0.1.1",
+    "cookie-parser": "^1.4.3",
+    "dotenv": "^4.0.0",
+    "ejs": "^2.6.1",
+    "express": "^4.16.3",
+    "express-session": "^1.15.6",
+    "geocoder": "^0.2.3",
+    "locus": "^2.0.1",
+    "method-override": "^2.3.10",
+    "moment": "^2.24.0",
+    "mongoose": "^4.13.14",
+    "node-geocoder": "^3.24.0",
+    "nodemon": "^1.19.3",
+    "passport": "^0.3.2",
     "passport-local": "^1.0.0",
-    "passport-local-mongoose": "^3.1.0"
+    "passport-local-mongoose": "^3.1.0",
+    "request": "^2.87.0"
   }
 }
