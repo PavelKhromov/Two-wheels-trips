@@ -19,6 +19,17 @@ router.get("/new", isLoggedIn, function(req, res){
     })
 });
 
+// new try
+//--------------------------
+
+// router.post("/", function(req, res) {
+//   Comment.collection("comment").insertOne(req.body, function(error, document){
+//     res.send("posted success");
+//   });
+// });
+
+// -------------------------
+
 //Comments create
 router.post("/", isLoggedIn, function(req, res){
    //lookup trip using ID

@@ -1,21 +1,21 @@
-require('dotenv').config();
-var express     = require("express"),
-    app         = express(),
-    bodyParser  = require("body-parser"),
-    mongoose    = require("mongoose"),
-    flash       = require("connect-flash"),
-    moment      = require('moment'),
-    passport    = require("passport"),
-    LocalStrategy = require("passport-local"),
+var express        = require("express"),
+    app            = express(),
+    bodyParser     = require("body-parser"),
+    mongoose       = require("mongoose"),
+    flash          = require("connect-flash"),
+    moment         = require('moment'),
+    passport       = require("passport"),
+    LocalStrategy  = require("passport-local"),
     methodOverride = require("method-override"),
-    Trip        = require("./models/trip"),
-    Comment     = require("./models/comment"),
-    User        = require("./models/user"),
-    seedDB      = require("./seeds")
+    Trip           = require("./models/trip"),
+    Comment        = require("./models/comment"),
+    User           = require("./models/user"),
+    mixins         = require('postcss-mixins'),
+    seedDB         = require("./seeds")
 
-    var commentRoutes  = require("./routes/comments"),
-        tripRoutes     = require("./routes/trips"),
-        indexRoutes    = require("./routes/index") 
+var commentRoutes  = require("./routes/comments"),
+    tripRoutes     = require("./routes/trips"),
+    indexRoutes    = require("./routes/index") 
 
 mongoose.connect('mongodb://127.0.0.1:27017/two_wheels_trips', { useMongoClient: true, promiseLibrary: global.Promise });
 mongoose.set('useNewUrlParser', true);
@@ -28,7 +28,7 @@ app.use(express.static(__dirname + "/public"));
 app.use(methodOverride("_method"));
 // -- removed seed for now
 app.use(flash());
-seedDB();
+//seedDB();
 
 // PASSPORT CONFIGURATION
 app.use(require("express-session")({
