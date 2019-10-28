@@ -28,12 +28,6 @@
 	font-weight: 400;
 
 
-  @mixin atLarge {
-      font-size: 8rem;
-      margin-top: 1rem;
-
-    }
-
 }
 
 hr { 

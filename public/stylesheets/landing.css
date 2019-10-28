@@ -16,11 +16,6 @@ body {
   font-size: 4rem;
   text-shadow: 3px 3px 0px rgba(0,0,0,0.3);
 
-  @mixin atSmall {
-      font-size: 8rem;
-      margin-top: 1rem;
-
-    }
 }
 
 .slideshow { 
