@@ -17,6 +17,31 @@ var commentRoutes  = require("./routes/comments"),
     tripRoutes     = require("./routes/trips"),
     indexRoutes    = require("./routes/index") 
 
+    //new code
+const http = require('http');
+
+process
+  .on('SIGTERM', shutdown('SIGTERM'))
+  .on('SIGINT', shutdown('SIGINT'))
+  .on('uncaughtException', shutdown('uncaughtException'));
+
+setInterval(console.log.bind(console, 'tick'), 1000);
+http.createServer((req, res) => res.end('hi'))
+  .listen(process.env.PORT || 3000, () => console.log('Listening'));
+
+function shutdown(signal) {
+  return (err) => {
+    console.log(`${ signal }...`);
+    if (err) console.error(err.stack || err);
+    setTimeout(() => {
+      console.log('...waited 5s, exiting.');
+      process.exit(err ? 1 : 0);
+    }, 5000).unref();
+  };
+}
+
+    //end
+
 mongoose.connect('mongodb://127.0.0.1:27017/two_wheels_trips', { useMongoClient: true, promiseLibrary: global.Promise });
 mongoose.set('useNewUrlParser', true);
 mongoose.set('useFindAndModify', false);
