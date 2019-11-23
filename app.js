@@ -43,6 +43,8 @@ var commentRoutes  = require("./routes/comments"),
     //end
 
 mongoose.connect('mongodb://127.0.0.1:27017/two_wheels_trips', { useMongoClient: true, promiseLibrary: global.Promise });
+// cluster0-shard-00-00-saq2e.mongodb.net:27017
+mongoose.connect("mongodb+srv://pavlo:mysecretcode2020@cluster0-saq2e.mongodb.net/test");
 mongoose.set('useNewUrlParser', true);
 mongoose.set('useFindAndModify', false);
 mongoose.set('useCreateIndex', true);
@@ -80,8 +82,12 @@ app.use(tripRoutes);
 app.use("/trips/:id/comments", commentRoutes);
 
 
-
-var port = process.env.PORT || 3000;
-app.listen(port, function () {
-  console.log("Server Has Started!");
+app.listen(8080, () => {
+    console.log('Server listening 8080');
 });
+
+
+// var port = process.env.PORT || 3000;
+// app.listen(port, function () {
+//   console.log("Server Has Started!");
+// });
