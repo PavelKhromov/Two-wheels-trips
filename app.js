@@ -52,7 +52,7 @@ client.connect(err => {
   client.close();
 });
 
-//01.13. code
+//01.13. code new
 //mongoose.connect('mongodb://127.0.0.1:27017/two_wheels_trips', { useMongoClient: true, promiseLibrary: global.Promise });
 // 01.13 coe ends
 //mongoose.connect("mongodb+srv://pavlo:mysecretcode2020@cluster0-saq2e.mongodb.net/test");
