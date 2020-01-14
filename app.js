@@ -42,9 +42,22 @@ var commentRoutes  = require("./routes/comments"),
 
     //end
 
-mongoose.connect('mongodb://127.0.0.1:27017/two_wheels_trips', { useMongoClient: true, promiseLibrary: global.Promise });
-// cluster0-shard-00-00-saq2e.mongodb.net:27017
-mongoose.connect("mongodb+srv://pavlo:mysecretcode2020@cluster0-saq2e.mongodb.net/test");
+
+const MongoClient = require('mongodb').MongoClient;
+const uri = "mongodb+srv://pavlo:LearnWeb1212@mongodb01-saq2e.mongodb.net/test?retryWrites=true&w=majority";
+const client = new MongoClient(uri, { useNewUrlParser: true });
+client.connect(err => {
+  const collection = client.db("test").collection("devices");
+  // perform actions on the collection object
+  client.close();
+});
+
+//01.13. code
+//mongoose.connect('mongodb://127.0.0.1:27017/two_wheels_trips', { useMongoClient: true, promiseLibrary: global.Promise });
+// 01.13 coe ends
+//mongoose.connect("mongodb+srv://pavlo:mysecretcode2020@cluster0-saq2e.mongodb.net/test");
+
+//mongoose.connect('mongodb+srv://pavlo:LearnWeb1212@cluster0-saq2e.mongodb.net/test?retryWrites=true&w=majority');
 mongoose.set('useNewUrlParser', true);
 mongoose.set('useFindAndModify', false);
 mongoose.set('useCreateIndex', true);
