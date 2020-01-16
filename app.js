@@ -95,9 +95,14 @@ app.use(tripRoutes);
 app.use("/trips/:id/comments", commentRoutes);
 
 
-app.listen(8080, () => {
+var port = process.env.PORT || 8080;
+
+var server=app.listen(port,function() {
+console.log("app running on port 8080"); });
+
+//app.listen(8080, () => {
     console.log('Server listening 8080');
-});
+//});
 
 
 // var port = process.env.PORT || 3000;
