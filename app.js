@@ -17,47 +17,7 @@ var commentRoutes  = require("./routes/comments"),
     tripRoutes     = require("./routes/trips"),
     indexRoutes    = require("./routes/index") 
 
-    //new code
-// const http = require('http');
-
-// process
-//   .on('SIGTERM', shutdown('SIGTERM'))
-//   .on('SIGINT', shutdown('SIGINT'))
-//   .on('uncaughtException', shutdown('uncaughtException'));
-
-// setInterval(console.log.bind(console, 'tick'), 1000);
-// http.createServer((req, res) => res.end('hi'))
-//   .listen(process.env.PORT || 3000, () => console.log('Listening'));
-
-// function shutdown(signal) {
-//   return (err) => {
-//     console.log(`${ signal }...`);
-//     if (err) console.error(err.stack || err);
-//     setTimeout(() => {
-//       console.log('...waited 5s, exiting.');
-//       process.exit(err ? 1 : 0);
-//     }, 5000).unref();
-//   };
-// }
-
-    //end
-
-const db = process.env.MONGODB_URL;
-
-const connectDB = async () => {
-  try {
-    await mongoose.connect(db, {
-      useUnifiedTopology: true,
-      useNewUrlParser: true
-    });
-    console.log("MongoDB is Connected...");
-  } catch (err) {
-    console.error(err.message);
-    process.exit(1);
-  }
-};    
-
-
+ 
 // const MongoClient = require('mongodb').MongoClient;
 // const uri = "mongodb+srv://pavlo:LearnWeb1212@mongodb01-saq2e.mongodb.net/test?retryWrites=true&w=majority";
 // const client = new MongoClient(uri, { useNewUrlParser: true });
@@ -66,6 +26,17 @@ const connectDB = async () => {
 //   // perform actions on the collection object
 //   client.close();
 // });
+
+
+mongoose.connect("mongodb+srv://pavlo:LearnWeb1212@mongodb01-saq2e.mongodb.net/test?retryWrites=true&w=majority", {
+    useNewUrlParser: true, 
+    /* useUnifiedTopology: true */
+}).then(() => {
+    console.log("connect to DB!")
+ 
+}).catch(err => {
+    console.log("ERROR", err.message);
+});
 
 //01.13. code new
 //mongoose.connect('mongodb://127.0.0.1:27017/two_wheels_trips', { useMongoClient: true, promiseLibrary: global.Promise });
@@ -115,9 +86,9 @@ var port = process.env.PORT || 8080;
 var server=app.listen(port,function() {
 console.log("app running on port 8080"); });
 
-//app.listen(8080, () => {
+
     console.log('Server listening 8080');
-//});
+
 
 
 // var port = process.env.PORT || 3000;
