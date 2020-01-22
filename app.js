@@ -29,7 +29,7 @@ var commentRoutes  = require("./routes/comments"),
 
 
 
-mongoose.connect("mongodb+srv://pavel:LearnWeb@cluster2-jpykh.mongodb.net/test?retryWrites=true&w=majority", {
+mongoose.connect("mongodb://pavel:LearnWeb@cluster2-jpykh.mongodb.net/test?retryWrites=true&w=majority", {
     useNewUrlParser: true, 
     /* useUnifiedTopology: true */
 }).then(() => {
