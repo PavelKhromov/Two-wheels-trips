@@ -1,5 +1,6 @@
 var express        = require("express"),
     app            = express(),
+    http           = require ('http'),
     bodyParser     = require("body-parser"),
     mongoose       = require("mongoose"),
     flash          = require("connect-flash"),
@@ -18,8 +19,30 @@ var commentRoutes  = require("./routes/comments"),
     indexRoutes    = require("./routes/index") 
 
 
-const MongoClient = require('mongodb').MongoClient;   
-var url = process.env.MONGOD_URI || "mongodb://lacalhost:27017/"; 
+
+
+// Here we find an appropriate database to connect to, defaulting to
+// localhost if we don't find one.  
+var uristring = 
+  process.env.MONGODB_URI || 
+  'mongodb://lacalhost:27017/';
+
+// The http server will listen to an appropriate port, or default to
+// port 5000.
+var theport = process.env.PORT || 5000;
+
+// Makes connection asynchronously.  Mongoose will queue up database
+// operations and release them when the connection is complete.
+mongoose.connect(uristring, function (err, res) {
+  if (err) { 
+    console.log ('ERROR connecting to: ' + uristring + '. ' + err);
+  } else {
+    console.log ('Succeeded connected to: ' + uristring);
+  }
+});
+
+// const MongoClient = require('mongodb').MongoClient;   
+// var url = process.env.MONGOD_URI || "mongodb://lacalhost:27017/"; 
 
  
 // const MongoClient = require('mongodb').MongoClient;
@@ -31,7 +54,7 @@ var url = process.env.MONGOD_URI || "mongodb://lacalhost:27017/";
 //   client.close();
 // });
 
-
+// this is works---------------
 
 // mongoose.connect("mongodb://pavel:LearnWeb@cluster2-jpykh.mongodb.net/test?retryWrites=true&w=majority", {
 //     useNewUrlParser: true, 
@@ -42,7 +65,7 @@ var url = process.env.MONGOD_URI || "mongodb://lacalhost:27017/";
 // }).catch(err => {
 //     console.log("ERROR", err.message);
 // });
-
+//----------------------------------
 
 //01.22.20 start
 // const http = require('http');
