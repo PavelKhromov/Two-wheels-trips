@@ -1,6 +1,5 @@
 var express        = require("express"),
     app            = express(),
-    http           = require ('http'),
     bodyParser     = require("body-parser"),
     mongoose       = require("mongoose"),
     flash          = require("connect-flash"),
@@ -21,28 +20,9 @@ var commentRoutes  = require("./routes/comments"),
 
 
 
-// Here we find an appropriate database to connect to, defaulting to
-// localhost if we don't find one.  
-var uristring = 
-  process.env.MONGODB_URI || 
-  'mongodb://lacalhost:27017/';
 
-// The http server will listen to an appropriate port, or default to
-// port 5000.
-var theport = process.env.PORT || 5000;
-
-// Makes connection asynchronously.  Mongoose will queue up database
-// operations and release them when the connection is complete.
-mongoose.connect(uristring, function (err, res) {
-  if (err) { 
-    console.log ('ERROR connecting to: ' + uristring + '. ' + err);
-  } else {
-    console.log ('Succeeded connected to: ' + uristring);
-  }
-});
-
-// const MongoClient = require('mongodb').MongoClient;   
-// var url = process.env.MONGOD_URI || "mongodb://lacalhost:27017/"; 
+const MongoClient = require('mongodb').MongoClient;   
+var url = process.env.MONGOD_URI || "mongodb://lacalhost:27017/"; 
 
  
 // const MongoClient = require('mongodb').MongoClient;
@@ -67,30 +47,6 @@ mongoose.connect(uristring, function (err, res) {
 // });
 //----------------------------------
 
-//01.22.20 start
-// const http = require('http');
-
-// process
-//   .on('SIGTERM', shutdown('SIGTERM'))
-//   .on('SIGINT', shutdown('SIGINT'))
-//   .on('uncaughtException', shutdown('uncaughtException'));
-
-// setInterval(console.log.bind(console, 'tick'), 1000);
-// http.createServer((req, res) => res.end('hi'))
-//   .listen(process.env.PORT || 3000, () => console.log('Listening'));
-
-// function shutdown(signal) {
-//   return (err) => {
-//     console.log(`${ signal }...`);
-//     if (err) console.error(err.stack || err);
-//     setTimeout(() => {
-//       console.log('...waited 5s, exiting.');
-//       process.exit(err ? 1 : 0);
-//     }, 5000).unref();
-//   };
-// }
-
-//end
 
 
 
