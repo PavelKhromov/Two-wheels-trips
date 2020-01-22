@@ -17,6 +17,10 @@ var commentRoutes  = require("./routes/comments"),
     tripRoutes     = require("./routes/trips"),
     indexRoutes    = require("./routes/index") 
 
+
+const MongoClient = require('mongodb').MongoClient;   
+var url = process.env.MONGOD_URI || "mongodb://lacalhost:27017/"; 
+
  
 // const MongoClient = require('mongodb').MongoClient;
 // const uri = "mongodb+srv://pavlo:LearnWeb1212@mongodb01-saq2e.mongodb.net/test?retryWrites=true&w=majority";
@@ -29,15 +33,15 @@ var commentRoutes  = require("./routes/comments"),
 
 
 
-mongoose.connect("mongodb://pavel:LearnWeb@cluster2-jpykh.mongodb.net/test?retryWrites=true&w=majority", {
-    useNewUrlParser: true, 
-    /* useUnifiedTopology: true */
-}).then(() => {
-    console.log("connect to DB!")
+// mongoose.connect("mongodb://pavel:LearnWeb@cluster2-jpykh.mongodb.net/test?retryWrites=true&w=majority", {
+//     useNewUrlParser: true, 
+    
+// }).then(() => {
+//     console.log("connect to DB!")
  
-}).catch(err => {
-    console.log("ERROR", err.message);
-});
+// }).catch(err => {
+//     console.log("ERROR", err.message);
+// });
 
 
 //01.22.20 start
