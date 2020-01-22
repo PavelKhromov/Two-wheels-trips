@@ -39,27 +39,31 @@ mongoose.connect("mongodb://pavel:LearnWeb@cluster2-jpykh.mongodb.net/test?retry
     console.log("ERROR", err.message);
 });
 
-const http = require('http');
 
-process
-  .on('SIGTERM', shutdown('SIGTERM'))
-  .on('SIGINT', shutdown('SIGINT'))
-  .on('uncaughtException', shutdown('uncaughtException'));
+//01.22.20 start
+// const http = require('http');
 
-setInterval(console.log.bind(console, 'tick'), 1000);
-http.createServer((req, res) => res.end('hi'))
-  .listen(process.env.PORT || 3000, () => console.log('Listening'));
+// process
+//   .on('SIGTERM', shutdown('SIGTERM'))
+//   .on('SIGINT', shutdown('SIGINT'))
+//   .on('uncaughtException', shutdown('uncaughtException'));
 
-function shutdown(signal) {
-  return (err) => {
-    console.log(`${ signal }...`);
-    if (err) console.error(err.stack || err);
-    setTimeout(() => {
-      console.log('...waited 5s, exiting.');
-      process.exit(err ? 1 : 0);
-    }, 5000).unref();
-  };
-}
+// setInterval(console.log.bind(console, 'tick'), 1000);
+// http.createServer((req, res) => res.end('hi'))
+//   .listen(process.env.PORT || 3000, () => console.log('Listening'));
+
+// function shutdown(signal) {
+//   return (err) => {
+//     console.log(`${ signal }...`);
+//     if (err) console.error(err.stack || err);
+//     setTimeout(() => {
+//       console.log('...waited 5s, exiting.');
+//       process.exit(err ? 1 : 0);
+//     }, 5000).unref();
+//   };
+// }
+
+//end
 
 
 
@@ -106,13 +110,13 @@ app.use(tripRoutes);
 app.use("/trips/:id/comments", commentRoutes);
 
 
-// var port = process.env.PORT || 8080;
+var port = process.env.PORT || 8080;
 
-// var server=app.listen(port,function() {
-// console.log("app running on port 8080"); });
+var server=app.listen(port,function() {
+console.log("app running on port 8080"); });
 
 
-//     console.log('Server listening 8080');
+    console.log('Server listening 8080');
 
 
 
