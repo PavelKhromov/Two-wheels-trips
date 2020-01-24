@@ -1,3 +1,5 @@
+require('dotenv').config()
+// REST OF YOUR CODE
 var express        = require("express"),
     app            = express(),
     bodyParser     = require("body-parser"),
@@ -58,7 +60,7 @@ var commentRoutes  = require("./routes/comments"),
 
 
 //01.13. code new works local
-mongoose.connect('mongodb://127.0.0.1:27017/two_wheels_trips', { useMongoClient: true, promiseLibrary: global.Promise });
+//mongoose.connect('mongodb://127.0.0.1:27017/two_wheels_trips', { useMongoClient: true, promiseLibrary: global.Promise });
 // 01.13 coe ends
 //mongoose.connect("mongodb+srv://pavlo:mysecretcode2020@cluster0-saq2e.mongodb.net/test");
 
@@ -68,7 +70,9 @@ mongoose.connect('mongodb://127.0.0.1:27017/two_wheels_trips', { useMongoClient:
 
 
 
+// connect Mongoose to your DB
 
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/two_wheels_trips');    
 
 
 mongoose.set('useNewUrlParser', true);
@@ -107,18 +111,24 @@ app.use(indexRoutes);
 app.use(tripRoutes);
 app.use("/trips/:id/comments", commentRoutes);
 
-app.listen(process.env.PORT, process.env.IP, function(){
-   console.log("The Server Has Started!");
-});
+// 01/24
+// app.listen(process.env.PORT, process.env.IP, function(){
+//    console.log("The Server Has Started!");
+// });
+//------
 
 
-var port = process.env.PORT || 8080;
+// var port = process.env.PORT || 8080;
 
-var server=app.listen(port,function() {
-console.log("app running on port 8080"); });
+// var server=app.listen(port,function() {
+// console.log("app running on port 8080"); });
 
 
-    console.log('Server listening 8080');
+//     console.log('Server listening 8080');
+
+const port = process.env.PORT || 3000;
+app.listen(port);
+// the code above should be directly above: 'module.exports = app;'
 
 
 
