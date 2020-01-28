@@ -35,6 +35,16 @@ hr {
     border: 7px solid #FFFF0A;
 }
 
+#test1 {
+	height: 320px; 
+	overflow: hidden;
+}
+
+#test2 {
+	height: 200px; 
+	overflow: hidden;
+}
+
 
 
 

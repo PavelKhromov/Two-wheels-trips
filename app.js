@@ -1,5 +1,5 @@
 require('dotenv').config()
-// REST OF YOUR CODE
+// REST OF CODE
 var express        = require("express"),
     app            = express(),
     bodyParser     = require("body-parser"),
@@ -18,30 +18,6 @@ var express        = require("express"),
 var commentRoutes  = require("./routes/comments"),
     tripRoutes     = require("./routes/trips"),
     indexRoutes    = require("./routes/index") 
-
-// mongoose.Promise = global.Promise;
-
-// const databaseUri = process.env.MONGODB_URI || 'mongodb://localhost/two_wheels_trips';
-
-// mongoose.connect(databaseUri, { useMongoClient: true })
-//       .then(() => console.log(`Database connected`))
-//       .catch(err => console.log(`Database connection error: ${err.message}`));
-
-
-
-
-// const MongoClient = require('mongodb').MongoClient;   
-// var url = process.env.MONGOD_URI || "mongodb://lacalhost:27017/"; 
-
- 
-// const MongoClient = require('mongodb').MongoClient;
-// const uri = "mongodb+srv://pavlo:LearnWeb1212@mongodb01-saq2e.mongodb.net/test?retryWrites=true&w=majority";
-// const client = new MongoClient(uri, { useNewUrlParser: true });
-// client.connect(err => {
-//   const collection = client.db("test").collection("devices");
-//   // perform actions on the collection object
-//   client.close();
-// });
 
 //this is works---------------
 
@@ -62,18 +38,12 @@ var commentRoutes  = require("./routes/comments"),
 //01.13. code new works local
 //mongoose.connect('mongodb://127.0.0.1:27017/two_wheels_trips', { useMongoClient: true, promiseLibrary: global.Promise });
 // 01.13 coe ends
-//mongoose.connect("mongodb+srv://pavlo:mysecretcode2020@cluster0-saq2e.mongodb.net/test");
-
-//mongoose.connect('mongodb+srv://pavlo:LearnWeb1212@cluster0-saq2e.mongodb.net/test?retryWrites=true&w=majority');
-
-// assign mongoose promise library and connect to database
 
 
-
-// connect Mongoose to your DB
-
+// connect Mongoose to your DB REAL
+//--------------------------------------------------------------------
 mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/two_wheels_trips');    
-
+//--------------------------------------------------------------------
 
 mongoose.set('useNewUrlParser', true);
 mongoose.set('useFindAndModify', false);
@@ -83,7 +53,6 @@ app.use(bodyParser.json());
 app.set("view engine", "ejs");
 app.use(express.static(__dirname + "/public"));
 app.use(methodOverride("_method"));
-// -- removed seed for now
 app.use(flash());
 //seedDB();
 
@@ -111,11 +80,6 @@ app.use(indexRoutes);
 app.use(tripRoutes);
 app.use("/trips/:id/comments", commentRoutes);
 
-// 01/24
-// app.listen(process.env.PORT, process.env.IP, function(){
-//    console.log("The Server Has Started!");
-// });
-//------
 
 
 // var port = process.env.PORT || 8080;
@@ -125,9 +89,11 @@ app.use("/trips/:id/comments", commentRoutes);
 
 
 //     console.log('Server listening 8080');
-
+// connect Mongoose to your DB REAL
+//--------------------------------------------------------------------
 const port = process.env.PORT || 3000;
 app.listen(port);
+// //--------------------------------------------------------------------
 // the code above should be directly above: 'module.exports = app;'
 
 
