@@ -21,15 +21,15 @@ var commentRoutes  = require("./routes/comments"),
 
 //this is works---------------
 
-mongoose.connect("mongodb://pavel:LearnWeb@cluster2-jpykh.mongodb.net/test?retryWrites=true&w=majority", {
-    useNewUrlParser: true, 
+// mongoose.connect("mongodb://pavel:LearnWeb@cluster2-jpykh.mongodb.net/test?retryWrites=true&w=majority", {
+//     useNewUrlParser: true, 
     
-}).then(() => {
-    console.log("connect to DB!")
+// }).then(() => {
+//     console.log("connect to DB!")
  
-}).catch(err => {
-    console.log("ERROR", err.message);
-});
+// }).catch(err => {
+//     console.log("ERROR", err.message);
+// });
 //----------------------------------
 
 
@@ -42,7 +42,7 @@ mongoose.connect("mongodb://pavel:LearnWeb@cluster2-jpykh.mongodb.net/test?retry
 
 // connect Mongoose to your DB REAL
 //--------------------------------------------------------------------
-//mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/two_wheels_trips');    
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/two_wheels_trips');    
 //--------------------------------------------------------------------
 
 mongoose.set('useNewUrlParser', true);
