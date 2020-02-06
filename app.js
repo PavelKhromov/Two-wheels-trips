@@ -36,13 +36,13 @@ var commentRoutes  = require("./routes/comments"),
 
 
 //01.13. code new works local
-mongoose.connect('mongodb://127.0.0.1:27017/two_wheels_trips', { useMongoClient: true, promiseLibrary: global.Promise });
+//mongoose.connect('mongodb://127.0.0.1:27017/two_wheels_trips', { useMongoClient: true, promiseLibrary: global.Promise });
 // 01.13 coe ends
 
 
 // connect Mongoose to your DB REAL
 //--------------------------------------------------------------------
-//mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/two_wheels_trips');    
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/two_wheels_trips');    
 //--------------------------------------------------------------------
 
 mongoose.set('useNewUrlParser', true);
