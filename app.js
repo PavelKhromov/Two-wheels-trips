@@ -21,15 +21,15 @@ var commentRoutes  = require("./routes/comments"),
 
 //this is works---------------
 
-// mongoose.connect("mongodb://pavel:LearnWeb@cluster2-jpykh.mongodb.net/test?retryWrites=true&w=majority", {
-//     useNewUrlParser: true, 
+mongoose.connect("mongodb://pavel:LearnWeb@cluster2-jpykh.mongodb.net/test?retryWrites=true&w=majority", {
+    useNewUrlParser: true, 
     
-// }).then(() => {
-//     console.log("connect to DB!")
+}).then(() => {
+    console.log("connect to DB!")
  
-// }).catch(err => {
-//     console.log("ERROR", err.message);
-// });
+}).catch(err => {
+    console.log("ERROR", err.message);
+});
 //----------------------------------
 
 
@@ -42,7 +42,7 @@ var commentRoutes  = require("./routes/comments"),
 
 // connect Mongoose to your DB REAL
 //--------------------------------------------------------------------
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/two_wheels_trips');    
+//mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/two_wheels_trips');    
 //--------------------------------------------------------------------
 
 mongoose.set('useNewUrlParser', true);
@@ -91,14 +91,14 @@ app.use("/trips/:id/comments", commentRoutes);
 //     console.log('Server listening 8080');
 // connect Mongoose to your DB REAL
 //--------------------------------------------------------------------
-const port = process.env.PORT || 3000;
-app.listen(port);
+// const port = process.env.PORT || 3000;
+// app.listen(port);
 // //--------------------------------------------------------------------
 // the code above should be directly above: 'module.exports = app;'
 
 
 
-// var port = process.env.PORT || 3000;
-// app.listen(port, function () {
-//   console.log("Server Has Started!");
-// });
+var port = process.env.PORT || 3000;
+app.listen(port, function () {
+  console.log("Server Has Started!");
+});

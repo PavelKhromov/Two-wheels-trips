@@ -1,6 +1,30 @@
 var express = require("express");
 var router = express.Router();
 var Trip = require("../models/trip");
+//new upload --------------
+var multer = require('multer');
+var storage = multer.diskStorage({
+  filename: function(req, file, callback) {
+    callback(null, Date.now() + file.originalname);
+  }
+});
+var imageFilter = function (req, file, cb) {
+    // accept image files only
+    if (!file.originalname.match(/\.(jpg|jpeg|png|gif)$/i)) {
+        return cb(new Error('Only image files are allowed!'), false);
+    }
+    cb(null, true);
+};
+var upload = multer({ storage: storage, fileFilter: imageFilter})
+
+var cloudinary = require('cloudinary');
+cloudinary.config({ 
+  cloud_name: 'do0rfhoo3', 
+  api_key: '279161765945811',
+  api_secret: 'cn2yGh1Erpn5TC1cgDSkrSKRFF0'
+});
+
+//-------------------------
 
 //INDEX - show all trips
 router.get("/trips", function(req, res){
@@ -15,32 +39,53 @@ router.get("/trips", function(req, res){
 });
 
 //CREATE - add new trip to DB
-router.post("/trips", isLoggedIn, function(req, res){
+router.post("/trips", isLoggedIn, upload.single('image'), function(req, res) {
+//router.post("/trips", isLoggedIn, function(req, res){
     // get data from form and add to trips array
-    var name = req.body.name;
-    var distance = req.body.distance;
-    var image = req.body.image;
-    var description = req.body.description;
-    var comments = req.body.comments;
-    var author = {
+    // var name = req.body.name;
+    // var distance = req.body.distance;
+    // var image = req.body.image;
+    // var description = req.body.description;
+    // var comments = req.body.comments;
+    // var author = {
+    //     id: req.user._id,
+    //     username: req.user.username
+    // }
+    // var newTrip = {name: name, distance: distance, image: image, description: description, author: author};
+
+
+
+    // // Create a new campground and save to DB
+    // Trip.create(newTrip, function(err, newlyCreated){
+    //     if(err){
+    //         console.log(err);
+    //     } else {
+    //         //redirect back to campgrounds page
+    //         console.log(newlyCreated);
+    //         res.redirect("/trips");
+    //     }
+    // });
+
+
+        cloudinary.uploader.upload(req.file.path, function(result) {
+      // add cloudinary url for the image to the campground object under image property
+      req.body.trip.image = result.secure_url;
+      // add author to campground
+      req.body.trip.author = {
         id: req.user._id,
         username: req.user.username
-    }
-    var newTrip = {name: name, distance: distance, image: image, description: description, author: author};
-
-
-
-    // Create a new campground and save to DB
-    Trip.create(newTrip, function(err, newlyCreated){
-        if(err){
-            console.log(err);
-        } else {
-            //redirect back to campgrounds page
-            console.log(newlyCreated);
-            res.redirect("/trips");
+      }
+      Trip.create(req.body.trip, function(err, trip) {
+        if (err) {
+          req.flash('error', err.message);
+          return res.redirect('back');
         }
+        res.redirect('/trips/' + trip.id);
+      });
     });
 });
+
+
 
 //NEW - show form to create new campground
 router.get("/trips/new", isLoggedIn, function(req, res){

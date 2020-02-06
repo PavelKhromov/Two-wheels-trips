@@ -41,7 +41,7 @@ body {
   background-repeat: no-repeat;
   opacity: 0;
   z-index: 0;
-  animation: imageAnimation 50s linear infinite; 
+  animation: imageAnimation 35s linear infinite; 
 }
 
 .slideshow li:nth-child(1) { 
@@ -49,19 +49,19 @@ body {
 }
 .slideshow li:nth-child(2) { 
   background-image: url('../assets/images/DSC_5054.jpg');
-  animation-delay: 10s; 
+  animation-delay: 5s; 
 }
 .slideshow li:nth-child(3) { 
   background-image: url('../assets/images/DSC_4992.jpg');
-  animation-delay: 20s; 
+  animation-delay: 15s; 
 }
 .slideshow li:nth-child(4) { 
   background-image: url'../assets/images/DSC_4885.jpg');
-  animation-delay: 30s; 
+  animation-delay: 20s; 
 }
 .slideshow li:nth-child(5) { 
   background-image: url('../assets/images/DSC_4836.jpg');
-  animation-delay: 40s; 
+  animation-delay: 25s; 
 }
 
 @keyframes imageAnimation { 
