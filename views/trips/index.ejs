@@ -1,7 +1,8 @@
 <% include ../partials/header %>
 
-<div class="container">
-	<header class="jumbotron">
+
+<header class="jumbotron">
+	<div class="container">
 
 
 	   <h1>Make Life A Ride</h1>
@@ -9,19 +10,39 @@
 	  	<div class="about">
 	   		 <p><em>Traveling by bicycle or a motorcycle provides a unique and engaging way to experience not only new places, but the people who live there, too. As we began to travel to different places by bike we found that we needed knowledge. We wanted to find information about places to go, the best low-traffic and scenic routes for bikes, what to take with us, where to sleep and eat and the things we might discover along the way.</em></p>
 		</div>
-
-		<!--
-	  	<a class="btn btn-primary btn-lg" href="/trips/new">Add a new trip</a>
-	  	!-->
-
-
 		<p>
             <a href="/trips/new" class="btn btn--yellow btn--large button1"><span>Add a new trip</span></a>
         </p>
 
     </header>
+
     <hr>
-<!-- You sessed up wit row name below-->
+<div class="container  col-xs-12">
+
+<!----------------NEW row test 02.06--------------------------->
+<div class="roww text-center flex-wrap" id="trip-grid">
+        <% trips.forEach(function(trip){ %>
+            <div class="col-md-3 col-sm-6">
+                <div id="test11" class="thumbnail">
+                	<div id="test2" class="img-responsive">
+                   <img src="<%= trip.image %>">
+               </div>
+                   <div class="caption">
+                       <h4><%= trip.name %></h4>
+                   </div>
+                   <p>
+                       <a href="/trips/<%= trip._id %>" class="btn btn-primary">More Info</a>
+                   </p>
+                </div>
+            </div>
+        <% }); %>
+    </div>
+</div>
+
+<!------------------------------------->
+<hr>
+
+<!-- Row below OLD--
    <div class="roww text-center" style="display:flex; flex-wrap: wrap;">
    
    	<% trips.forEach(function(trip){ %>
@@ -43,13 +64,15 @@
    	 		</div>
    	 		
    	 	</div>
+
+   	 	-------------------------------->
+
+
+
+
    	 <% }); %>
    </div>
-   
-
-
-<% include ../partials/footer %>
 
 
 
-   	 		
+<% include ../partials/footer %>  	 		
