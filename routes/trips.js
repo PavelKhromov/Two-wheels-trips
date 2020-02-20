@@ -38,38 +38,18 @@ router.get("/trips", function(req, res){
     });
 });
 
+
 //CREATE - add new trip to DB
 router.post("/trips", isLoggedIn, upload.single('image'), function(req, res) {
-//router.post("/trips", isLoggedIn, function(req, res){
-    // get data from form and add to trips array
-    // var name = req.body.name;
-    // var distance = req.body.distance;
-    // var image = req.body.image;
-    // var description = req.body.description;
-    // var comments = req.body.comments;
-    // var author = {
-    //     id: req.user._id,
-    //     username: req.user.username
-    // }
-    // var newTrip = {name: name, distance: distance, image: image, description: description, author: author};
-
-
-
-    // // Create a new campground and save to DB
-    // Trip.create(newTrip, function(err, newlyCreated){
-    //     if(err){
-    //         console.log(err);
-    //     } else {
-    //         //redirect back to campgrounds page
-    //         console.log(newlyCreated);
-    //         res.redirect("/trips");
-    //     }
-    // });
-
-
-        cloudinary.uploader.upload(req.file.path, function(result) {
+    cloudinary.v2.uploader.upload(req.file.path, function(err, result) {
+        if(err) {
+            req.flash('error', err.message);
+            return res.redirect('back');
+        }
       // add cloudinary url for the image to the campground object under image property
       req.body.trip.image = result.secure_url;
+      //add image's public_id to trip
+      req.body.trip.imageId = result.public_id;
       // add author to campground
       req.body.trip.author = {
         id: req.user._id,
@@ -116,18 +96,7 @@ router.get("/trips/:id/edit", checkTripOwnership, function(req, res){
 
 
 // UPDATE TRIP
-
 router.put("/trips/:id", checkTripOwnership, function(req, res){
-    // google maps
-    // geocoder.geocode(req.body.location, function (err, data) {
-    // if (err || !data.length) {
-    //   req.flash('error', 'Invalid address');
-    //   return res.redirect('back');
-    // }
-    // req.body.trip.lat = data[0].latitude;
-    // req.body.trip.lng = data[0].longitude;
-    // req.body.trip.location = data[0].formattedAddress;
-    // google maps end
     Trip.findByIdAndUpdate(req.params.id, req.body.trip, function(err, updatedTrip){
         if(err){
             res.redirect("/trips");
@@ -136,30 +105,6 @@ router.put("/trips/:id", checkTripOwnership, function(req, res){
         }
     });
 });
- // all code
-    // UPDATE CAMPGROUND ROUTE
-// router.put("/trips/:id", checkTripOwnership, function(req, res){
-//   geocoder.geocode(req.body.location, function (err, data) {
-//     if (err || !data.length) {
-//       req.flash('error', 'Invalid address');
-//       return res.redirect('back');
-//     }
-//     req.body.trip.lat = data[0].latitude;
-//     req.body.trip.lng = data[0].longitude;
-//     req.body.trip.location = data[0].formattedAddress;
-
-//     Trip.findByIdAndUpdate(req.params.id, req.body.trip, function(err, trip){
-//         if(err){
-//             req.flash("error", err.message);
-//             res.redirect("back");
-//         } else {
-//             req.flash("success","Successfully Updated!");
-//             res.redirect("/trips/" + trip._id);
-//         }
-//     });
-//   });
-// });
- //all code ends
 
 // DELETE TRIP ROUTE
 router.delete("/trips/:id", checkTripOwnership, function(req, res){
@@ -172,9 +117,6 @@ router.delete("/trips/:id", checkTripOwnership, function(req, res){
       }
     });
 });
-
-
-
 
 //middleware
 function isLoggedIn(req, res, next){

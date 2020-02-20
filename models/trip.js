@@ -4,6 +4,7 @@ var tripSchema = new mongoose.Schema({
    name: String,
    distance: String,
    image: String,
+   imageId: String,
    description: String,
    createdAt: {type: Date, default: Date.now},
    author: {

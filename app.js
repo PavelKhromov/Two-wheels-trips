@@ -1,7 +1,7 @@
 require('dotenv').config()
-// REST OF CODE
 var express        = require("express"),
     app            = express(),
+    sass           = require('sass'),
     bodyParser     = require("body-parser"),
     mongoose       = require("mongoose"),
     flash          = require("connect-flash"),
@@ -13,31 +13,15 @@ var express        = require("express"),
     Comment        = require("./models/comment"),
     User           = require("./models/user"),
     mixins         = require('postcss-mixins'),
-    seedDB         = require("./seeds")
-
-var commentRoutes  = require("./routes/comments"),
+    seedDB         = require("./seeds"),
+    commentRoutes  = require("./routes/comments"),
     tripRoutes     = require("./routes/trips"),
     indexRoutes    = require("./routes/index") 
 
-//this is works---------------
 
-// mongoose.connect("mongodb://pavel:LearnWeb@cluster2-jpykh.mongodb.net/test?retryWrites=true&w=majority", {
-//     useNewUrlParser: true, 
-    
-// }).then(() => {
-//     console.log("connect to DB!")
- 
-// }).catch(err => {
-//     console.log("ERROR", err.message);
-// });
-//----------------------------------
-
-
-
-
-//01.13. code new works local
+//01.13. local
 //mongoose.connect('mongodb://127.0.0.1:27017/two_wheels_trips', { useMongoClient: true, promiseLibrary: global.Promise });
-// 01.13 coe ends
+// 01.13 
 
 
 // connect Mongoose to your DB REAL
@@ -79,23 +63,6 @@ app.use(function(req, res, next){
 app.use(indexRoutes);
 app.use(tripRoutes);
 app.use("/trips/:id/comments", commentRoutes);
-
-
-
-// var port = process.env.PORT || 8080;
-
-// var server=app.listen(port,function() {
-// console.log("app running on port 8080"); });
-
-
-//     console.log('Server listening 8080');
-// connect Mongoose to your DB REAL
-//--------------------------------------------------------------------
-// const port = process.env.PORT || 3000;
-// app.listen(port);
-// //--------------------------------------------------------------------
-// the code above should be directly above: 'module.exports = app;'
-
 
 
 var port = process.env.PORT || 3000;
